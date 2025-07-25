@@ -6,6 +6,15 @@ const board = [
     ['-','-','-'],
     ['-','-','-'],
 ]
+const btn_0 = document.querySelector('.idx0')
+const btn_1 = document.querySelector('.idx1')
+const btn_2 = document.querySelector('.idx2')
+const btn_3 = document.querySelector('.idx3')
+const btn_4 = document.querySelector('.idx4')
+const btn_5 = document.querySelector('.idx5')
+const btn_6 = document.querySelector('.idx6')
+const btn_7 = document.querySelector('.idx7')
+const btn_8 = document.querySelector('.idx8')
 
 function Player(name,sign,score) {
     this.name = name
@@ -89,7 +98,19 @@ function gameOver(){
             board[i][j] = '-'
         }
     }
+    for (let i = 0; i < 9; i++) {
+        const img = document.querySelector(`.idx${i} img`);
+        if (!img) return;
+        img.src = './assets/empty.svg';
+    }
     turn = round % 2 !== 0;
+}
+
+function updateButtons(idx, sign) {
+    const img = document.querySelector(`.idx${idx} img`);
+    if (!img) return;
+
+    img.src = sign === Sign[0] ? './assets/x.svg' : './assets/o.svg';
 }
 
 function place_sign(x,y){
@@ -98,9 +119,11 @@ function place_sign(x,y){
     } else {
         if (turn) {
             board[x][y] = player1.sign
+            updateButtons(x*3+y, player1.sign)
             checkWin(player1)
         } else {
             board[x][y] = player2.sign
+            updateButtons(x*3+y, player2.sign)
             checkWin(player2)
         }
         turn = !turn;
