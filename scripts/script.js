@@ -102,6 +102,8 @@ function gameOver(){
         const img = document.querySelector(`.idx${i} img`);
         if (!img) return;
         img.src = './assets/empty.svg';
+        const btn = document.querySelector(`.idx${i}`);
+        btn.disabled = false;
     }
     turn = round % 2 !== 0;
 }
