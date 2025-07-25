@@ -106,14 +106,8 @@ function gameOver(){
     turn = round % 2 !== 0;
 }
 
-function updateButtons(idx, sign) {
-    const img = document.querySelector(`.idx${idx} img`);
-    if (!img) return;
-
-    img.src = sign === Sign[0] ? './assets/x.svg' : './assets/o.svg';
-}
-
 function place_sign(x,y){
+    document.querySelector(`.idx${x * 3 + y}`).disabled = true;
     if (!checkIndex(x,y)) {
         console.log('index not available')
     } else {
@@ -129,6 +123,48 @@ function place_sign(x,y){
         turn = !turn;
     }
 }
+
+function setupHoverPreview() {
+    for (let i = 0; i < 9; i++) {
+        const btn = document.querySelector(`.idx${i}`);
+        const img = btn.querySelector("img");
+
+        btn.addEventListener("mouseenter", () => {
+            const x = Math.floor(i / 3);
+            const y = i % 3;
+            if (board[x][y] === '-') {
+                img.src = turn ? "./assets/x.svg" : "./assets/o.svg";
+                img.classList.add("empty-preview");
+            }
+        });
+
+        btn.addEventListener("mouseleave", () => {
+            const x = Math.floor(i / 3);
+            const y = i % 3;
+            if (board[x][y] === '-') {
+                img.src = "./assets/empty.svg";
+                img.classList.remove("empty-preview");
+            }
+        });
+    }
+}
+
+function updateButtons(idx, sign) {
+    const img = document.querySelector(`.idx${idx} img`);
+    if (!img) return;
+
+    img.src = sign === Sign[0] ? './assets/x.svg' : './assets/o.svg';
+    img.classList.remove("empty-preview");
+    img.classList.add("placed");
+
+    setTimeout(() => {
+        img.classList.remove("placed");
+    }, 300);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupHoverPreview();
+});
 
 document.addEventListener("DOMContentLoaded", () => {
     const btn = document.querySelector('.startGame-btn');
