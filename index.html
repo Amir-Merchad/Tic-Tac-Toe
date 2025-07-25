@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./styles/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<dialog>
+    <div class="gameModeContainer">
+        <div class="gameModeTitle">
+            <img src="./assets/xo.svg" alt="Tic-Tac-Toe">
+        </div>
+        <div class="selector">
+            <H3 class="title">CHOOSE THE FIRST PLAYER'S SIGN</H3>
+            <div class="input">
+                <section class="game-initializer">
+                    <!-- Sign X -->
+                    <input type="radio" name="select-sign" id="sign-x" class="sign-input" />
+                    <label for="sign-x" class="sign-label"><img src="./assets/x.svg" alt="x"></label>
+
+                    <!-- Sign O -->
+                    <input type="radio" name="select-sign" id="sign-o" class="sign-input" checked />
+                    <label for="sign-o" class="sign-label"><img src="./assets/o.svg" alt="o"></label>
+                </section>
+            </div>
+            <p>Note: X GOES FIRST!</p>
+        </div>
+        <div class="startGame">
+            <button class="startGame-btn">START GAME</button>
+        </div>
+    </div>
+</dialog>
+</body>
+<script src="./scripts/script.js"></script>
+</html>
