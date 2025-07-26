@@ -28,8 +28,8 @@ function Player(name,sign,score) {
 function resetGame(){
     player1.score = 0
     player2.score = 0
-    player1Score.innerHTML = player1.score
-    player2Score.innerHTML = player2.score
+    player1Score = player1.score
+    player2Score = player2.score
 
     for (let i = 0; i < 3 ; i++) {
         for (let j = 0; j < 3; j++){
@@ -205,5 +205,11 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             btn.classList.remove('clicked');
         }, 300);
+    });
+});
+
+document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('touchstart', () => {
+        button.classList.remove('clicked');
     });
 });

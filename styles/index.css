@@ -536,3 +536,18 @@ h1 {
         height: 50px;
     }
 }
+
+@media (hover: none) and (pointer: coarse) {
+    button:hover,
+    button:focus,
+    button:active {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    button::before,
+    button::after {
+        opacity: 0 !important;
+        animation: none !important;
+    }
+}
