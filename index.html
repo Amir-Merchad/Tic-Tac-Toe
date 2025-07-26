@@ -9,14 +9,20 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>Tic Tac Toe</h1>
-        <button class="reset">
-            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.524 0h-1.88a.476.476 0 0 0-.476.499l.159 3.284A9.81 9.81 0 0 0 9.835.317C4.415.317-.004 4.743 0 10.167.004 15.597 4.406 20 9.835 20a9.796 9.796 0 0 0 6.59-2.536.476.476 0 0 0 .019-.692l-1.348-1.349a.476.476 0 0 0-.65-.022 6.976 6.976 0 0 1-9.85-.63 6.987 6.987 0 0 1 .63-9.857 6.976 6.976 0 0 1 10.403 1.348l-4.027-.193a.476.476 0 0 0-.498.476v1.881c0 .263.213.476.476.476h7.944A.476.476 0 0 0 20 8.426V.476A.476.476 0 0 0 19.524 0Z"
-                      fill="#1F3641"/>
-            </svg>
-        </button>
+        <h1 class="header">Tic Tac Toe</h1>
+        <div class="header">
+            <img class="imgContainer" src="./assets/xo.svg" alt="Tic-Tac-Toe">
+        </div>
+        <div class="header">
+            <button class="reset buttonContainer" onclick="resetGame()">
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.524 0h-1.88a.476.476 0 0 0-.476.499l.159 3.284A9.81 9.81 0 0 0 9.835.317C4.415.317-.004 4.743 0 10.167.004 15.597 4.406 20 9.835 20a9.796 9.796 0 0 0 6.59-2.536.476.476 0 0 0 .019-.692l-1.348-1.349a.476.476 0 0 0-.65-.022 6.976 6.976 0 0 1-9.85-.63 6.987 6.987 0 0 1 .63-9.857 6.976 6.976 0 0 1 10.403 1.348l-4.027-.193a.476.476 0 0 0-.498.476v1.881c0 .263.213.476.476.476h7.944A.476.476 0 0 0 20 8.426V.476A.476.476 0 0 0 19.524 0Z"
+                          fill="#1F3641"/>
+                </svg>
+            </button>
+        </div>
     </div>
+    <div class="player-turn">X TURN</div>
     <div class="main">
         <div class="grid">
             <button onclick="place_sign(0,0)" class="gridField idx0"><img src="./assets/empty.svg" alt="x"></button>
@@ -29,8 +35,18 @@
             <button onclick="place_sign(2,1)" class="gridField idx7"><img src="./assets/empty.svg" alt="x"></button>
             <button onclick="place_sign(2,2)" class="gridField idx8"><img src="./assets/empty.svg" alt="x"></button>
         </div>
+        <div class="score">
+            <div class="xscore">
+                <h3>PLAYER X</h3>
+                <h2 class="player1Score">0</h2>
+            </div>
+            <div class="oscore">
+                <h3>PLAYER O</h3>
+                <h2 class="player2Score">0</h2>
+            </div>
+        </div>
     </div>
-    <div class="footer"></div>
+    <div class="footer">Copy Right © 2025 <a href="https://github.com/Amir-Merchad" class="mygithub"> Amir Merchad </a></div>
 </div>
 <dialog>
     <div class="gameModeContainer">

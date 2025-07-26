@@ -284,6 +284,7 @@ dialog{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     padding: 10vh 10vw;
     background-color: var(--primary);
 }
@@ -370,4 +371,152 @@ img.placed {
         height: 60px;
         width: 60px;
     }
+}
+
+.player-turn{
+    display: flex;
+    font-size: 24px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary);
+    color: var(--grey);
+    border-radius: 5px;
+    font-weight: 700;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+    height: 40px;
+    width: 150px;
+    position: fixed;
+    top: 13vh;
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.imgContainer {
+    position: fixed;
+    top: 6vh; /* or whatever vertical position you want */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes breathe {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.95; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+h1 {
+    font-size: 3.5rem;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+
+    background: linear-gradient(
+            90deg,
+            var(--secondary),
+            var(--grey),
+            var(--yellow),
+            var(--grey),
+            var(--secondary)
+    );
+    background-size: 200%;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    animation: shine 4s linear infinite, glow 4s ease-in-out infinite;
+}
+
+/* Gradient movement */
+@keyframes shine {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 200%;
+    }
+}
+
+/* Tighter, sharper glow colors */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 1px var(--secondary), 0 0 6px var(--secondary);
+    }
+    25% {
+        text-shadow: 0 0 1px var(--grey), 0 0 6px var(--grey);
+    }
+    50% {
+        text-shadow: 0 0 1px var(--yellow), 0 0 6px var(--yellow);
+    }
+    75% {
+        text-shadow: 0 0 1px var(--grey), 0 0 6px var(--grey);
+    }
+    100% {
+        text-shadow: 0 0 1px var(--secondary), 0 0 6px var(--secondary);
+    }
+}
+
+.footer {
+    background-color: var(--primary);
+    color: var(--grey);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 15px 0;
+    font-weight: 500;
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.1);
+    user-select: none;
+    letter-spacing: 0.03em;
+}
+
+.footer a.mygithub {
+    color: var(--yellow);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer a.mygithub:hover,
+.footer a.mygithub:focus {
+    color: var(--cyan);
+    text-shadow: 0 0 8px var(--cyan);
+    outline: none;
+    cursor: pointer;
+}
+
+.score{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.xscore{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cyan);
+    height: 8vh;
+    width: 10vw;
+    border: none;
+    border-radius: 8px;
+}
+
+.oscore{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--yellow);
+    height: 8vh;
+    width: 10vw;
+    border: none;
+    border-radius: 8px;
 }

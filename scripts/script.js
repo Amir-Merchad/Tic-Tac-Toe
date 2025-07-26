@@ -15,11 +15,34 @@ const btn_5 = document.querySelector('.idx5')
 const btn_6 = document.querySelector('.idx6')
 const btn_7 = document.querySelector('.idx7')
 const btn_8 = document.querySelector('.idx8')
+const playerTurn = document.querySelector('.player-turn')
+let player1Score = document.querySelector('.player1Score')
+let player2Score = document.querySelector('.player2Score')
 
 function Player(name,sign,score) {
     this.name = name
     this.sign = sign
     this.score = score
+}
+
+function resetGame(){
+    player1.score = 0
+    player2.score = 0
+    player1Score.innerHTML = player1.score
+    player2Score.innerHTML = player2.score
+
+    for (let i = 0; i < 3 ; i++) {
+        for (let j = 0; j < 3; j++){
+            board[i][j] = '-'
+        }
+    }
+    for (let i = 0; i < 9; i++) {
+        const img = document.querySelector(`.idx${i} img`);
+        if (!img) return;
+        img.src = './assets/empty.svg';
+        const btn = document.querySelector(`.idx${i}`);
+        btn.disabled = false;
+    }
 }
 
 function printBoard(){
@@ -117,10 +140,16 @@ function place_sign(x,y){
             board[x][y] = player1.sign
             updateButtons(x*3+y, player1.sign)
             checkWin(player1)
+            playerTurn.innerHTML = player2.sign + ' TURN'
+            player1Score.innerHTML = player1.score
+            player2Score.innerHTML = player2.score
         } else {
             board[x][y] = player2.sign
             updateButtons(x*3+y, player2.sign)
             checkWin(player2)
+            playerTurn.innerHTML = player1.sign + ' TURN'
+            player1Score.innerHTML = player1.score
+            player2Score.innerHTML = player2.score
         }
         turn = !turn;
     }
@@ -172,10 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btn = document.querySelector('.startGame-btn');
 
     btn.addEventListener('click', () => {
-        // Add 'clicked' class
         btn.classList.add('clicked');
-
-        // Optionally: Remove the class after the animation (if you want to allow repeated clicks)
         setTimeout(() => {
             btn.classList.remove('clicked');
         }, 300);
