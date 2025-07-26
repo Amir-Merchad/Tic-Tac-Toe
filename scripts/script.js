@@ -135,7 +135,7 @@ function setupHoverPreview() {
             const x = Math.floor(i / 3);
             const y = i % 3;
             if (board[x][y] === '-') {
-                img.src = turn ? "./assets/x.svg" : "./assets/o.svg";
+                img.src = turn ? "./assets/x-preview.svg" : "./assets/o-preview.svg";
                 img.classList.add("empty-preview");
             }
         });
