@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./styles/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Tic Tac Toe</title>
 </head>
 <body>
 <div class="container">
@@ -25,15 +25,15 @@
     <div class="player-turn">X TURN</div>
     <div class="main">
         <div class="grid">
-            <button onclick="place_sign(0,0)" class="gridField idx0"><img src="./assets/empty.svg" alt="x"></button>
-            <button onclick="place_sign(0,1)" class="gridField idx1"><img src="./assets/empty.svg" alt="x"></button>
-            <button onclick="place_sign(0,2)" class="gridField idx2"><img src="./assets/empty.svg" alt="x"></button>
-            <button onclick="place_sign(1,0)" class="gridField idx3"><img src="./assets/empty.svg" alt="x"></button>
-            <button onclick="place_sign(1,1)" class="gridField idx4"><img src="./assets/empty.svg" alt="x"></button>
-            <button onclick="place_sign(1,2)" class="gridField idx5"><img src="./assets/empty.svg" alt="x"></button>
-            <button onclick="place_sign(2,0)" class="gridField idx6"><img src="./assets/empty.svg" alt="x"></button>
-            <button onclick="place_sign(2,1)" class="gridField idx7"><img src="./assets/empty.svg" alt="x"></button>
-            <button onclick="place_sign(2,2)" class="gridField idx8"><img src="./assets/empty.svg" alt="x"></button>
+            <button onclick="place_sign(0,0)" class="gridField idx0"><img src="./assets/empty.svg" alt="empty"></button>
+            <button onclick="place_sign(0,1)" class="gridField idx1"><img src="./assets/empty.svg" alt="empty"></button>
+            <button onclick="place_sign(0,2)" class="gridField idx2"><img src="./assets/empty.svg" alt="empty"></button>
+            <button onclick="place_sign(1,0)" class="gridField idx3"><img src="./assets/empty.svg" alt="empty"></button>
+            <button onclick="place_sign(1,1)" class="gridField idx4"><img src="./assets/empty.svg" alt="empty"></button>
+            <button onclick="place_sign(1,2)" class="gridField idx5"><img src="./assets/empty.svg" alt="empty"></button>
+            <button onclick="place_sign(2,0)" class="gridField idx6"><img src="./assets/empty.svg" alt="empty"></button>
+            <button onclick="place_sign(2,1)" class="gridField idx7"><img src="./assets/empty.svg" alt="empty"></button>
+            <button onclick="place_sign(2,2)" class="gridField idx8"><img src="./assets/empty.svg" alt="empty"></button>
         </div>
         <div class="score">
             <div class="xscore">
@@ -48,31 +48,48 @@
     </div>
     <div class="footer">Copy Right © 2025 <a href="https://github.com/Amir-Merchad" class="mygithub"> Amir Merchad </a></div>
 </div>
-<dialog>
+
+<!-- Start Game Dialog -->
+<dialog id="startDialog" class="start">
     <div class="gameModeContainer">
         <div class="gameModeTitle">
             <img src="./assets/xo.svg" alt="Tic-Tac-Toe">
         </div>
         <div class="selector">
-            <H3 class="title">CHOOSE THE FIRST PLAYER'S SIGN</H3>
+            <h3 class="title">CHOOSE THE FIRST PLAYER'S SIGN</h3>
             <div class="input">
                 <section class="game-initializer">
                     <!-- Sign X -->
-                    <input type="radio" name="select-sign" id="sign-x" class="sign-input"/>
+                    <input type="radio" name="select-sign" id="sign-x" class="sign-input" value="X"/>
                     <label for="sign-x" class="sign-label"><img src="./assets/x.svg" alt="x"></label>
 
                     <!-- Sign O -->
-                    <input type="radio" name="select-sign" id="sign-o" class="sign-input" checked/>
-                    <label for="sign-o" class="sign-label"><img src="./assets/o.svg" alt="o"></label>
+                    <input type="radio" name="select-sign" id="sign-o" class="sign-input" value="O" checked/>
+                    <label for="sign-o" class="sign-label"><img src="./assets/o_light.svg" alt="o"></label>
                 </section>
             </div>
-            <p>Note: X GOES FIRST!</p>
         </div>
         <div class="startGame">
-            <button class="startGame-btn">START GAME</button>
+            <button id="startGameBtn" class="startGame-btn">START GAME</button>
         </div>
     </div>
 </dialog>
-</body>
+
+<!-- Game Over Dialog -->
+<dialog id="gameOverDialog" class="restart">
+    <div class="gameModeContainer">
+        <div class="gameModeTitle">
+            <img src="./assets/xo.svg" alt="Tic-Tac-Toe">
+        </div>
+        <div class="selector">
+            <h3 id="winnerText" class="title">Player X won the game!</h3>
+            <div class="startGame">
+                <button id="restartGameBtn" class="startGame-btn">PLAY AGAIN</button>
+            </div>
+        </div>
+    </div>
+</dialog>
+
 <script src="./scripts/script.js"></script>
+</body>
 </html>

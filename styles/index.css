@@ -19,17 +19,30 @@ body{
     min-height: 100%;
 }
 
+/* Dialog Fixes - Mobile Responsive */
 dialog{
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 999; /* ensure it's above all */
+    z-index: 999;
     width: 100vw;
     height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile */
     padding: 0;
     border: none;
-    background: transparent;
-    display: none;
+    background: var(--primary);
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    overflow: hidden;
+}
+
+dialog::backdrop {
+    background: rgba(26, 43, 51, 0.95);
+}
+
+dialog[open] {
+    display: flex;
 }
 
 .gameModeContainer{
@@ -38,20 +51,26 @@ dialog{
     justify-content: space-around;
     align-items: center;
     height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile */
     width: 100vw;
     background-color: var(--primary);
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .gameModeTitle {
     display: flex;
     flex-direction: column;
-    height: 20vh;
-    justify-content: end;
-    padding-bottom: 2vh;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    flex-shrink: 0;
 }
 
 .gameModeTitle img{
-    height: 50%;
+    height: 60px;
+    width: 120px;
 }
 
 .selector{
@@ -59,11 +78,15 @@ dialog{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50vh;
-    width: 50vw;
+    min-height: 300px;
+    width: 90vw;
+    max-width: 500px;
     border-radius: 10px;
     background-color: var(--secondary);
     box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+    padding: 20px;
+    flex: 1;
+    margin: 20px 0;
 }
 
 .selector h3, .selector p{
@@ -72,30 +95,30 @@ dialog{
 }
 
 .selector h3{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 10%;
     color: var(--grey);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
 }
 
 .selector p{
-    height: 10%;
     color: rgba(255, 255, 255, .4);
+    margin-top: 20px;
+    font-size: 0.9rem;
 }
 
 .startGame {
-    height: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px 0;
+    flex-shrink: 0;
 }
 
 .startGame-btn {
-    min-width: 300px;
-    min-height: 60px;
+    min-width: 250px;
+    min-height: 50px;
     display: inline-flex;
-    font-size: 22px;
+    font-size: 18px;
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
@@ -111,15 +134,15 @@ dialog{
     cursor: pointer;
     outline: none;
     position: relative;
-    padding: 10px;
+    padding: 10px 20px;
     will-change: transform;
 }
 
 .startGame-btn::before {
     content: '';
     border-radius: 30px;
-    min-width: calc(300px + 12px);
-    min-height: calc(60px + 12px);
+    min-width: calc(250px + 12px);
+    min-height: calc(50px + 12px);
     border: 6px solid var(--yellow);
     box-shadow: 0 0 60px rgba(255, 215, 0, 0.64);
     position: absolute;
@@ -129,7 +152,6 @@ dialog{
     opacity: 0;
     transition: all 0.3s ease-in-out;
 }
-
 
 .startGame-btn:hover:not(.clicked),
 .startGame-btn:focus:not(.clicked) {
@@ -193,21 +215,21 @@ dialog{
 }
 
 .selector .input{
-    height: 80%;
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex: 1;
 }
 
 .game-initializer {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     gap: 20px;
     width: 100%;
-    height: 100%;
+    flex-wrap: wrap;
 }
 
 .sign-input {
@@ -215,13 +237,13 @@ dialog{
 }
 
 .sign-label {
-    width: 45vw;
-    height: 25vh;
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    margin: 0;
+    margin: 10px;
     border: 3px solid transparent;
     border-radius: 12px;
     cursor: pointer;
@@ -231,8 +253,8 @@ dialog{
 }
 
 .sign-label img {
-    width: 100%;
-    height: 100%;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
     display: block;
     margin: 0 auto;
@@ -247,16 +269,91 @@ dialog{
 
 @media (max-width: 1024px) {
     .selector{
-        height: 70vh;
-        width: 90vw;
+        width: 95vw;
+        min-height: 250px;
+    }
+
+    .sign-label {
+        width: 80px;
+        height: 80px;
+    }
+
+    .sign-label img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .startGame-btn {
+        min-width: 200px;
+        min-height: 45px;
+        font-size: 16px;
+    }
+
+    .startGame-btn::before {
+        min-width: calc(200px + 12px);
+        min-height: calc(45px + 12px);
+    }
+
+    .gameModeTitle img{
+        height: 50px;
+        width: 50px;
+    }
+
+    .selector h3{
+        font-size: 1rem;
+    }
+
+    .selector p{
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .gameModeContainer {
+        padding: 10px;
+    }
+
+    .selector {
+        width: 98vw;
+        padding: 15px;
+        min-height: 200px;
+    }
+
+    .sign-label {
+        width: 70px;
+        height: 70px;
+        margin: 5px;
+    }
+
+    .sign-label img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .startGame-btn {
+        min-width: 180px;
+        min-height: 40px;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .startGame-btn::before {
+        min-width: calc(180px + 12px);
+        min-height: calc(40px + 12px);
+    }
+
+    .game-initializer {
+        gap: 10px;
     }
 }
 
 .container{
     display: grid;
-    grid-template-rows: 2fr 10fr 1fr;
-    height: 100vh;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
     width: 100vw;
+    overflow-x: hidden;
 }
 
 .header, .footer{
@@ -285,16 +382,19 @@ dialog{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 10vh 10vw;
+    padding: 20px;
     background-color: var(--primary);
+    min-height: 0;
+    flex: 1;
 }
 
 .grid{
-    height: 330px;
-    width: 330px;
-    gap: 15px;
+    height: min(330px, 80vw);
+    width: min(330px, 80vw);
+    gap: min(15px, 3vw);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 20px;
 }
 
 .gridField svg {
@@ -342,8 +442,8 @@ dialog{
 }
 
 .gridField img{
-    height: 70px;
-    width: 70px;
+    height: min(70px, 15vw);
+    width: min(70px, 15vw);
 }
 
 img.placed {
@@ -362,20 +462,12 @@ img.placed {
 }
 
 @media (max-width: 450px) {
-    .grid{
-        height: 250px;
-        width: 250px;
-    }
-
-    .gridField img{
-        height: 60px;
-        width: 60px;
-    }
+    /* Removed - now handled in the @media (max-width: 480px) section above */
 }
 
 .player-turn{
     display: flex;
-    font-size: 24px;
+    font-size: clamp(16px, 4vw, 24px);
     justify-content: center;
     align-items: center;
     background-color: var(--secondary);
@@ -384,11 +476,14 @@ img.placed {
     font-weight: 700;
     box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
     height: 40px;
-    width: 150px;
+    width: auto;
+    min-width: 120px;
+    padding: 0 20px;
     position: fixed;
-    top: 13vh;
+    top: 10px;
     left: 50%;
-    transform: translateX(-50%)
+    transform: translateX(-50%);
+    z-index: 10;
 }
 
 .header{
@@ -399,7 +494,7 @@ img.placed {
 
 .imgContainer {
     position: fixed;
-    top: 6vh; /* or whatever vertical position you want */
+    top: 6vh;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -432,7 +527,6 @@ h1 {
     animation: shine 4s linear infinite, glow 4s ease-in-out infinite;
 }
 
-/* Gradient movement */
 @keyframes shine {
     0% {
         background-position: 0%;
@@ -442,7 +536,6 @@ h1 {
     }
 }
 
-/* Tighter, sharper glow colors */
 @keyframes glow {
     0% {
         text-shadow: 0 0 1px var(--secondary), 0 0 6px var(--secondary);
@@ -489,51 +582,153 @@ h1 {
 }
 
 .score{
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 15px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.xscore, .oscore{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px;
+    min-width: 100px;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.xscore h3, .oscore h3 {
+    font-size: clamp(10px, 2.5vw, 14px);
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: #000;
+    line-height: 1;
+}
+
+.xscore h2, .oscore h2 {
+    font-size: clamp(16px, 4vw, 24px);
+    font-weight: 800;
+    margin: 0;
+    color: #000;
+    line-height: 1;
 }
 
 .xscore{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: var(--cyan);
-    height: 8vh;
-    width: 10vw;
-    border: none;
-    border-radius: 8px;
 }
 
 .oscore{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: var(--yellow);
-    height: 8vh;
-    width: 10vw;
-    border: none;
-    border-radius: 8px;
 }
 
 @media (max-width: 1024px) {
     h1{
-        font-size: 40px;
-    }
-    h2{
-        font-size: 18px;
-    }
-    h3{
-        font-size: 15px;
+        font-size: clamp(1.2rem, 5vw, 2.5rem);
     }
     .xscore , .oscore{
-        width: 100px;
-        height: 50px;
+        min-width: 80px;
+        min-height: 50px;
+        padding: 6px 10px;
+    }
+
+    .xscore h3, .oscore h3 {
+        font-size: clamp(9px, 2vw, 12px);
+    }
+
+    .xscore h2, .oscore h2 {
+        font-size: clamp(14px, 3.5vw, 20px);
+    }
+
+    .grid{
+        height: min(280px, 75vw);
+        width: min(280px, 75vw);
+    }
+
+    .gridField img{
+        height: min(60px, 12vw);
+        width: min(60px, 12vw);
+    }
+
+    .main {
+        padding: 10px;
+    }
+
+    .header {
+        padding: 5px 15px;
+        min-height: 50px;
+    }
+
+    .header button {
+        min-height: 35px;
+        min-width: 35px;
+    }
+
+    .imgContainer {
+        height: 35px;
+        width: 35px;
+    }
+
+    .player-turn {
+        top: 5px;
+        height: 35px;
+        font-size: clamp(14px, 3vw, 20px);
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid{
+        height: min(250px, 90vw);
+        width: min(250px, 90vw);
+        gap: min(10px, 2vw);
+    }
+
+    .gridField img{
+        height: min(50px, 14vw);
+        width: min(50px, 14vw);
+    }
+
+    .score {
+        margin-top: 15px;
+        gap: 10px;
+    }
+
+    .xscore, .oscore {
+        min-width: 70px;
+        min-height: 45px;
+        padding: 4px 8px;
+    }
+
+    .xscore h3, .oscore h3 {
+        font-size: clamp(8px, 2vw, 10px);
+    }
+
+    .xscore h2, .oscore h2 {
+        font-size: clamp(12px, 3vw, 16px);
+    }
+
+    .main {
+        padding: 5px;
+    }
+
+    .header {
+        padding: 5px 10px;
+        min-height: 45px;
+    }
+
+    .player-turn {
+        height: 30px;
+        font-size: clamp(12px, 3vw, 16px);
+        padding: 0 10px;
     }
 }
 
